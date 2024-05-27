@@ -1,0 +1,31 @@
+node{
+  def mavenHome = tool name: 'maven 3.8.6'
+  stage('1cloneCode'){
+    git "https://github.com/chamberlain96/maven-web-application"
+  }
+  stage('2Test&Build'){
+    sh "${mavenHome}/bin/mvn clean package"
+    //bat "${mavenHome}/bin/mvn clean package"
+  }
+  stage('code quality'){
+      sh "${mavenHome}/bin/mvn sonar:sonar"
+}
+stage('uploadArtifacts'){
+    sh "${mavenHome}/bin/mvn deploy"
+}
+stage('deploytoUAT'){
+sh "echo deploy to UAT"
+deploy adapters: [tomcat9(credentialsId: '66e9825f-9fa8-406e-93b0-0afbfda5da59', path: '', url: 'http://35.175.137.103:8080/')], contextPath: ' ', war: 'target/*war'
+}
+stage('approvalgate'){
+    timeout(time:5, unit: 'DAYS'){
+    input message: 'Application ready for deployment, Please review and approve'  
+}
+}
+stage('deployto prod'){
+    deploy adapters: [tomcat9(credentialsId: '66e9825f-9fa8-406e-93b0-0afbfda5da59', path: '', url: 'http://35.175.137.103:8080/')], contextPath: '', war: 'target/*war'
+}
+stage('emailnotification'){
+   emailext body: 'hi everyone please read and approve', subject: 'application approval', to: 'mbakuchamberlain@gmail.com ' 
+}
+}
