@@ -1,66 +1,32 @@
-pipeline{
-  agent any 
-  tools {
-    maven "maven3.6.0"
-  }  
-  stages {
-    stage('1GetCode'){
-      steps{
-        sh "echo 'cloning the latest application version' "
-        git branch: 'feature', credentialsId: 'gitHubCredentials', url: 'https://github.com/LandmakTechnology/maven-web-application'
-      }
+node('built-in') 
+{
+    stage('Continuous Download') 
+    {
+        git 'https://github.com/FonsahPageo/maven.git'
     }
-    stage('3Test+Build'){
-      steps{
-        sh "echo 'running JUnit-test-cases' "
-        sh "echo 'testing must passed to create artifacts ' "
-        sh "mvn clean package"
-      }
+    stage('Continuous Build') 
+    {
+        sh 'mvn clean install'
     }
-    /*
-    stage('4CodeQuality'){
-      steps{
-        sh "echo 'Perfoming CodeQualityAnalysis' "
-        sh "mvn sonar:sonar"
-      }
+    stage('Continuous Deploy') 
+    {
+        sh 'scp /var/lib/jenkins/workspace/scriptedpipeline/webapp/target/webapp.war ubuntu@172.31.31.212:/var/lib/tomcat9/webapps/qaenv.war' 
     }
-    stage('5uploadNexus'){
-      steps{
-        sh "mvn deploy"
-      }
-    } 
-    stage('8deploy2prod'){
-      steps{
-        deploy adapters: [tomcat8(credentialsId: 'tomcat-credentials', path: '', url: 'http://35.170.249.131:8080/')], contextPath: null, war: 'target/*war'
-      }
+    // replace IP in continuous deploy/delivery with the private IP of the qa/prod server
+    stage('Continuous Delivery') 
+    {
+        sh 'scp /var/lib/jenkins/workspace/scriptedpipeline/webapp/target/webapp.war ubuntu@172.31.31.61:/var/lib/tomcat9/webapps/prodenv.war'
     }
-}
-  post{
-    always{
-      emailext body: '''Hey guys
-Please check build status.
-
-Thanks
-Landmark 
-+1 437 215 2483''', recipientProviders: [buildUser(), developers()], subject: 'success', to: 'paypal-team@gmail.com'
+    stage("Email Notification")
+     {
+        mail (
+            bcc: '', 
+            body: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.currentResult}: Check console output at ${env.BUILD_URL} to view the results. This is an auto-generated email. Do not reply.",
+            cc: '', 
+            from: '', 
+            replyTo: '', 
+            subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.currentResult}!",
+            to: 'ashprincepageo@gmail.com'
+        )
     }
-    success{
-      emailext body: '''Hey guys
-Good job build and deployment is successful.
-
-Thanks
-Landmark 
-+1 437 215 2483''', recipientProviders: [buildUser(), developers()], subject: 'success', to: 'paypal-team@gmail.com'
-    } 
-    failure{
-      emailext body: '''Hey guys
-Build failed. Please resolve issues.
-
-Thanks
-Landmark 
-+1 437 215 2483''', recipientProviders: [buildUser(), developers()], subject: 'success', to: 'paypal-team@gmail.com'
-    }
-  } 
-  */
-}
 }
