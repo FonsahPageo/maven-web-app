@@ -99,7 +99,7 @@
 	</distributionManagement>
 	
 	<build>
-		<finalName>JULLICHAM</finalName>
+		<finalName>FONSAH</finalName>
 		
 		<plugins>
 			<plugin>
