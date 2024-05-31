@@ -99,7 +99,7 @@
 	</distributionManagement>
 	
 	<build>
-		<finalName>FONSAH</finalName>
+		<finalName>webapp</finalName>
 		
 		<plugins>
 			<plugin>
