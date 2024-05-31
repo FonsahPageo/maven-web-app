@@ -2,7 +2,7 @@ node('built-in')
 {
     stage('Continuous Download') 
     {
-        git 'https://github.com/FonsahPageo/maven.git'
+        git 'https://github.com/FonsahPageo/maven_web_app.git'
     }
     stage('Continuous Build') 
     {
