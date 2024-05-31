@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>com.mt</groupId>
-	<artifactId>maven-web-application</artifactId>
+	<artifactId>maven-web-app</artifactId>
 	<packaging>war</packaging>
 	
 	<!-- <version>0.0.3-SNAPSHOT</version> -->
 	<version>0.0.3</version>
 	
-	<name>maven-web-application</name>
+	<name>maven-web-app</name>
 
 	<description>Maven Web Project for Java Project</description>
 
@@ -113,13 +113,19 @@
 			</plugin>
 
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.2</version> 
+			</plugin>
+
+			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>12.0.9</version>
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<webApp>
-						<contextPath>/maven-web-application</contextPath>
+						<contextPath>/maven-web-app</contextPath>
 					</webApp>
 				</configuration>
 			</plugin>
@@ -132,7 +138,7 @@
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>true</downloadJavadocs>
 					<wtpversion>2.0</wtpversion>
-					<wtpContextName>maven-web-application</wtpContextName>
+					<wtpContextName>maven-web-app</wtpContextName>
 				</configuration>
 			</plugin>
 			
