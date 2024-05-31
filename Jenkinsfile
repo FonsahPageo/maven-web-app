@@ -13,7 +13,7 @@ node('built-in')
     {
       sh 'scp /var/lib/jenkins/workspace/scriptedpipeline/webapp/target/webapp.war ubuntu@172.31.31.212:/var/lib/tomcat9/webapps/qaenv.war' 
     }
-    // replace IP in continuous deploy/delivery with the private IP of the qa/prod server
+    // replace IP address in continuous deploy/delivery with the private IP of the qa/prod server
     stage('Continuous Delivery') 
     {
       sh 'scp /var/lib/jenkins/workspace/scriptedpipeline/webapp/target/webapp.war ubuntu@172.31.31.61:/var/lib/tomcat9/webapps/prodenv.war'
