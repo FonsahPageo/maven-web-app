@@ -11,12 +11,12 @@ node('built-in')
     }
     stage('Continuous Deploy') 
     {
-      sh 'scp /var/lib/jenkins/workspace/fonsah-maven/target/webapp.war ubuntu@172.31.4.45:/opt/tomcat/webapps/qaenv.war' 
+      sh 'sudo scp /var/lib/jenkins/workspace/fonsah-maven/target/webapp.war ubuntu@172.31.4.45:/opt/tomcat/webapps/qaenv.war' 
     }
     // replace IP address in continuous deploy/delivery with the private IP of the qa/prod server
     stage('Continuous Delivery') 
     {
-      sh 'scp /var/lib/jenkins/workspace/fonsah-maven/target/webapp.war ubuntu@172.31.13.136:/opt/tomcat/webapps/prodenv.war'
+      sh 'sudo scp /var/lib/jenkins/workspace/fonsah-maven/target/webapp.war ubuntu@172.31.13.136:/opt/tomcat/webapps/prodenv.war'
     }
     stage("Email Notification")
     {
