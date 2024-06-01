@@ -6,17 +6,17 @@ node('built-in')
     }
     stage('Continuous Build') 
     {
-      sh 'mvn package'
+      sh 'mvn clean install'
       sh 'mvn package'
     }
     stage('Continuous Deploy') 
     {
-      sh 'scp /var/lib/jenkins/workspace/scriptedpipeline/webapp/target/webapp.war ubuntu@172.31.3.179:/var/lib/tomcat9/webapps/qaenv.war' 
+      sh 'scp /var/lib/jenkins/workspace/fonsah-maven/target/webapp.war ubuntu@172.31.3.179:/opt/tomcat/webapps/qaenv.war' 
     }
     // replace IP address in continuous deploy/delivery with the private IP of the qa/prod server
     stage('Continuous Delivery') 
     {
-      sh 'scp /var/lib/jenkins/workspace/scriptedpipeline/webapp/target/webapp.war ubuntu@172.31.11.138:/var/lib/tomcat9/webapps/prodenv.war'
+      sh 'scp /var/lib/jenkins/workspace/fonsah-maven/target/webapp.war ubuntu@172.31.11.138:/opt/tomcat/webapps/prodenv.war'
     }
     stage("Email Notification")
     {
