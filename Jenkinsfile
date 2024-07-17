@@ -11,8 +11,7 @@ node('built-in')
     }
     stage('Continuous Deploy') 
     {
-        sh 'docker cp jenkins:/var/jenkins_home/workspace/jenkins job/target/webapp.war fonsahdev:/usr/local/tomcat/webapps/qaenv.war'
-      // sh 'scp var/jenkins_home/workspace/jenkins job/target/webapp.war fonsahdev:/usr/local/tomcat/webapps/qaenv.war' 
+      sh 'scp var/jenkins_home/workspace/jenkins job/target/webapp.war fonsahdev:/usr/local/tomcat/webapps/qaenv.war' 
     }
     // replace IP address in continuous deploy/delivery with the private IP of the qa/prod server
     stage('Continuous Delivery') 
