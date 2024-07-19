@@ -9,8 +9,8 @@
 </head>
 </head>
 <body>
-<h1 align="center">Welcome to bkhgcyfib Travis Tech/underbelle Academy and Web application Project30 automation.</h1>
-<h1 align="center">We hope you enjoy your time under TRAVIS ACADEMY.</h1>
+<h1 align="center">Welcome to Ash4lyf Academy and Web application Project automation.</h1>
+<h1 align="center">We hope you enjoy your time under Ash4lyf ACADEMY.</h1>
 <h1 align="center">We are developing and supporting quality Software Solutions to millions of clients globally.
 	           We are raising millionaires in IT automation.
                    We are preping engineers for the future,
@@ -36,20 +36,20 @@ out.println("Server Host Name :: "+inetAddress.getHostName());
 		<img src="images/mylandmarklogo.png" alt="" width="150">
 	</span>
 	<span style="font-weight: bold;">
-                Travis Technology, 
-		Montreal, Canada
-		+1 438 928 4597,
-		chamberlainaws@gmail.com
+                Ash4lyf Technology, 
+		Bonaberi, Douala
+		+237 675-41-60-98,
+		ashprincepageo@gmail.com
 		<br>
-		<a href="mailto: chamberlainaws@gmail.com">Mail to Travis Technologies</a>
+		<a href="mailto: ashprincepageo@gmail.com">Mail to Ash4lyf Technologies</a>
 	</span>
 </div>
 <hr>
 	<p> Service : <a href="services/employee/getEmployeeDetails">Get Employee Details </p>
 <hr>
 <hr>
-<p align=center> Travis Technologies - Consultant, Training and Software Development</p>
-<p align=center><small>Copyrights 2021 by <a href="http://travistech.com/">Travis Technologies</a> </small></p>
+<p align=center> Ash4lyf Technologies - Consultant, Training and Software Development</p>
+<p align=center><small>Copyrights &copy; 2024 by <a href="https://wa.me/237675416098">Ash4lyf Technologies</a> </small></p>
 
 </body>
 </html>
