@@ -11,12 +11,24 @@ node('built-in')
     }
     stage('Continuous Deploy') 
     {
-      sh 'scp var/jenkins_home/workspace/jenkins job/target/webapp.war fonsahdev:/usr/local/tomcat/webapps/qaenv.war' 
+      steps{
+        script {
+          docker.image('maven:latest').inside {
+            sh 'docker cp var/jenkins_home/workspace/jenkins job/target/webapp.war fonsahdev:/usr/local/tomcat/webapps/qaenv.war' 
+          }
+        }
+      }
     }
     // replace IP address in continuous deploy/delivery with the private IP of the qa/prod server
     stage('Continuous Delivery') 
     {
-      sh 'scp var/jenkins_home/workspace/jenkins job/target/webapp.war fonsahprod:/usr/local/tomcat/webapps/prodenv.war'
+      steps{
+        script {
+          docker.image('maven:latest').inside {
+            sh 'docker cp var/jenkins_home/workspace/jenkins job/target/webapp.war fonsahprod:/usr/local/tomcat/webapps/prodenv.war'
+          }
+        }
+      }
     }
     stage("Email Notification")
     {
