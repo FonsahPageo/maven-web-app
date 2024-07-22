@@ -4,11 +4,11 @@ node('built-in')
     {
       git 'https://github.com/FonsahPageo/maven-web-app.git'
     }
-    // stage('Continuous Build') 
-    // {
-    //   sh 'mvn clean install'
-    //   sh 'mvn package'
-    // }
+    stage('Continuous Build') 
+    {
+      sh 'mvn clean install'
+      sh 'mvn package'
+    }
     // stage('Continuous Deploy') 
     // {
     //   // sh 'scp var/jenkins_home/workspace/jenkins job/target/webapp.war fonsahdev:/usr/local/tomcat/webapps/qaenv.war' 
